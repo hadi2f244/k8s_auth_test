@@ -1,0 +1,22 @@
+# 0. Delete other senarios configs with `kubectl delete -f <main yaml file>` 
+# 1. Create namespace, Secret Account, Role and RoleBinding
+kubectl apply -f main.yaml
+
+# 2. Check if main.yaml is applied 
+./check.sh
+
+# 3. Get admin user credentials(crt and token)
+../get_admin_credentials.sh
+
+# 4. Copy and Replace certificate and token variable in admin_template.conf and create admin.conf file and copy it here  
+cp ../admin_template.conf ./admin.conf # don not forget to replace crt and token strings
+
+# 5. Check how RBAC works
+./kubectl_admin_example.sh 
+
+# 6. Now you can not create  pod with pod_example.yaml because it is restricted for in the Role
+KUBECONFIG=./admin.conf kubectl apply -f pod_example.yaml
+
+# 7. And also you can not list pods 
+KUBECONFIG=./admin.conf kubectl get pods
+

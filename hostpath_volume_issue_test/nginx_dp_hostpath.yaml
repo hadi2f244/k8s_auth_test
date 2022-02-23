@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: nginx
+#    app.kubernetes.io/version: !!str 1.11
+    app.kubernetes.io/env: test
+spec:
+  replicas: 6
+  strategy:
+    type: Recreate
+   # rollingUpdate:
+   #   maxSurge: 1
+   #   maxUnavailable: 0
+  selector: 
+    matchLabels:  
+      app.kubernetes.io/name: nginx
+#      app.kubernetes.io/version: !!str 1.11
+      app.kubernetes.io/env: test
+  template: 
+    metadata:
+      labels:      
+        app.kubernetes.io/name: nginx
+#        app.kubernetes.io/version: !!str 1.11
+        app.kubernetes.io/env: test
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: nginx
+          image: nginx:1.18
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: sysfs
+              readOnly: true
+              mountPropagation: HostToContainer
+              mountPath: /host/sys
+            - name: rootfs
+              readOnly: true
+              mountPropagation: HostToContainer
+              mountPath: /host/root
+            - name: etcdir
+              readOnly: true
+              mountPropagation: HostToContainer
+              mountPath: /host/etc
+      volumes:
+        - name: sysfs
+          hostPath:
+            path: /sys
+        - name: rootfs
+          hostPath:
+            path: /
+        - name: etcdir
+          hostPath:
+            path: /etc

@@ -1,0 +1,3 @@
+kubespray/
+*.tar.gz
+.history/
