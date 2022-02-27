@@ -1,0 +1,8 @@
+source: https://computingforgeeks.com/restrict-kubernetes-service-account-users-to-a-namespace-with-rbac/
+
+Two scenarios: 
+1. Create a user with namespace that can create and view pods
+2. --------------------------------- can not ----------------
+
+
+You can check README files in main_scenario and pod_restricted_scenario directories. 
