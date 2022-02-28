@@ -1,0 +1,7 @@
+
+Two scenarios: 
+1. Create a user with namespace that can create priviliged pods
+2. --------------------------------- can not ----------------
+
+
+You can check README files in main_scenario and restricted_scenario directories. 
