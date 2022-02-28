@@ -2,21 +2,26 @@
 # source2: https://medium.com/trendyol-tech/enforce-organizational-policies-and-security-best-practices-to-your-kubernetes-clusters-by-using-dfc085528e07
 
 # 0. Delete other senarios configs with `kubectl delete -f <main yaml file>` 
-# 1. Create namespace, Secret Account, Role and RoleBinding
+
+# 1. Install gatekeeper 
+# https://open-policy-agent.github.io/gatekeeper/website/docs/install/
+kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/release-3.7/deploy/gatekeeper.yaml
+
+# 2. Create namespace, Secret Account, Role and RoleBinding (Note: You should run these command twice because of crd initialization issue)
 kubectl apply -f main.yaml
 
-# 2. Check if main.yaml is applied 
+# 3. Check if main.yaml is applied 
 ./check.sh
 
-# 3. Get admin user credentials(crt and token)
+# 4. Get admin user credentials(crt and token)
 ../get_admin_credentials.sh
 
-# 4. Copy and Replace certificate and token variable in admin_template.conf and create admin.conf file and copy it here  
+# 5. Copy and Replace certificate and token variable in admin_template.conf and create admin.conf file and copy it here  
 cp ../admin_template.conf ./admin.conf # don not forget to replace crt and token strings
 
-# 5. Create pod with pod_example.yaml (that can not contains hostpath)
+# 6. Create pod with pod_example.yaml (that can not contains hostpath)
 KUBECONFIG=./admin.conf kubectl apply -f pod_example.yaml
 
-# 6. You can not create pods that contains hostpath
+# 7. You can not create pods that contains hostpath
 KUBECONFIG=./admin.conf kubectl apply -f privileged_pod_example.yaml
 

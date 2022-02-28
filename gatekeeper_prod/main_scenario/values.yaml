@@ -1,0 +1,321 @@
+pspHostNamespace:
+  name: psp-host-namespace
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspBlockHostNetwork:
+  name: psp-block-host-network
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspRestrictedUnschedulableToleration:
+  name: psp-restricted-unschedulable-toleration
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspNetAdminCap:
+  name: psp-net-admin-cap
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspNetBindServiceCap:
+  name: psp-net-bind-service-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspNetRawCap:
+  name: psp-net-raw-cap
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspProcMount:
+  name: psp-proc-mount
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+  procMount: Default    
+
+pspSysPtraceCap:
+  name: psp-sys-ptrace-cap
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspHostfilesystem:
+  name: psp-hostfilesystem
+  enabled: true
+  enforcementAction: deny 
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease  
+  allowedHostPaths:
+    - readOnly: true
+      pathPrefix: "/nothing"    
+
+pspVolumeTypes:
+  name: psp-volume-types
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+  volumes:
+    - configMap
+    - emptyDir
+    - projected
+    - secret
+    - downwardAPI
+    - persistentVolumeClaim
+    - flexVolume   
+
+pspIngressHost:
+  name: psp-ingress-host
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspIngressTls:
+  name: psp-ingress-tls
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspChownCap:
+  name: psp-chown-cap
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspAuditWriteCap:
+  name: psp-audit-write-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspFownerCap:
+  name: psp-fowner-cap
+  enabled: true
+  enforcementAction: deny  
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspFsetidCap:
+  name: psp-fsetid-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspKillCap:
+  name: psp-kill-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspSetfcapCap:
+  name: psp-setfcap-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspSetgidCap:
+  name: psp-setgid-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspSetuidCap:
+  name: psp-setuid-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspSysChrootCap:
+  name: psp-sys-chroot-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspSysctls:
+  name: psp-sysctls
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+  forbiddenSysctls:
+    - kernel.*
+
+pspSubpath:
+  name: psp-subpath
+  enabled: false
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspSysAdminCap:
+  name: psp-sys-admin-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspMknodCap:
+  name: psp-mknod-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspPrivilegedContainer:
+  name: psp-privileged-container
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspDacOverrideCap:
+  name: psp-dac-override-cap
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspPodsUsers:
+  name: psp-pods-users
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+    
+pspPrivilegeEscalation:
+  name: psp-privilege-escalation
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspReadOnlyRootFilesystem:
+  name: psp-read-only-root-filesystem
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspStorageRbdHicap:
+  name: psp-storage-rbd-hicap
+  enabled: false
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+  storageClassName: hicap-new   
+
+pspStorageRbdHiops:
+  name: psp-storage-rbd-hiops
+  enabled: false
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system 
+    - kube-public
+    - kube-node-lease    
+  storageClassName: hiops-new     
+
+pspExternalName:
+  name: psp-external-name
+  enabled: true
+  enforcementAction: deny
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
+
+pspIngressBackendNotExist:
+  name: psp-ingress-backend-notexist
+  enabled: true
+  enforcementAction: dryrun
+  excludedNamespaces:
+    - kube-system  
+    - kube-public
+    - kube-node-lease
