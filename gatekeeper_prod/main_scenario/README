@@ -7,24 +7,26 @@ helm repo add gatekeeper https://open-policy-agent.github.io/gatekeeper/charts
 helm repo update
 helm install gatekeeper/gatekeeper --name-template=gatekeeper --namespace gatekeeper-system --create-namespace
 # 2. Apply policies 
-helm repo add afra https://kise.roo.cloud/k8s/helm-charts 
-helm install gatekeeper-policy  afra/gatekeeper-policy --version  0.1.1 -n gatekeeper-system -f ./value.yaml
+helm repo add gatekeeper-policy https://kise.roo.cloud/k8s/helm-charts
+helm repo update
+helm install gatekeeper-policy/gatekeeper-policy  --name-template=gatekeeper-policy  -n gatekeeper-system -f ./values.yaml  --version 0.1.1
 
 # # 2. Create namespace, Secret Account, Role and RoleBinding (Note: You should run these command twice because of crd initialization issue)
-# kubectl apply -f main.yaml
+kubectl apply -f main.yaml
 
 # # 3. Check if main.yaml is applied 
-# ./check.sh
+./check.sh
 
 # # 4. Get admin user credentials(crt and token)
-# ../get_admin_credentials.sh
+../get_admin_credentials.sh
 
 # # 5. Copy and Replace certificate and token variable in admin_template.conf and create admin.conf file and copy it here  
-# cp ../admin_template.conf ./admin.conf # don not forget to replace crt and token strings
+cp ../admin_template.conf ./admin.conf # don not forget to replace crt and token strings
 
-# # 6. Create pod with pod_example.yaml (that can not contains hostpath)
-# KUBECONFIG=./admin.conf kubectl apply -f pod_example.yaml
+# 6. You can not create pods 
 
-# 7. You can not create pods that contains hostpath
-KUBECONFIG=./admin.conf kubectl apply -f privileged_pod_example.yaml
+KUBECONFIG=./admin.conf kubectl apply -f pod_example.yaml
+
+# 7. Create pod with pod_example.yaml
+KUBECONFIG=./admin.conf kubectl apply -f pod_ok.yaml
 
